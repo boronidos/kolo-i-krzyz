@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
+  const [gameEnded, setGameEnded] = useState(false);
   const [player, setPlayer] = useState("x");
   const [board, setBoard] = useState([
     ["", "", ""],
@@ -17,9 +18,11 @@ function App() {
 
     setBoard(newBoard);
     player == "x" ? setPlayer("o") : setPlayer("x");
-    checkWinner(newBoard);
+    if (checkWinner(newBoard) != null) setGameEnded(true);
 
-    if (newBoard[0][0] != "" && newBoard[0][1] != "" && newBoard[0][2] != "" && newBoard[1][0] != "" && newBoard[1][1] != "" && newBoard[1][2] != "" && newBoard[2][0] != "" && newBoard[2][1] != "" && newBoard[2][2] != "") setBoard([["", "", ""],["", "", ""],["", "", ""],]);
+    if (newBoard[0][0] != "" && newBoard[0][1] != "" && newBoard[0][2] != "" && newBoard[1][0] != "" && newBoard[1][1] != "" && newBoard[1][2] != "" && newBoard[2][0] != "" && newBoard[2][1] != "" && newBoard[2][2] != "") {
+      setGameEnded(true);
+    }
   }
 
   function checkWinner(board: string[][]) {
@@ -36,11 +39,16 @@ function App() {
 
     for (const line of lines) {
       if (line[0] !== "" && line[0] === line[1] && line[1] === line[2]) {
-        alert("winner is: " + line[0]);
-        setBoard([["", "", ""],["", "", ""],["", "", ""],]);
-        return;
+        return line[0];
       }
     }
+
+    return null;
+  }
+
+  function restartGame() {
+    setBoard([["", "", ""],["", "", ""],["", "", ""],]);
+    setGameEnded(false);
   }
 
   return (
@@ -52,6 +60,7 @@ function App() {
           <tr><Cell x={2} y={0}/> <Cell x={2} y={1}/><Cell x={2} y={2}/></tr>
         </tbody>
       </table>
+      { gameEnded ? (<div className='ui'> <button onClick={() => restartGame()}>start new game</button> <p>{ checkWinner(board) != null ? "winner is: " + checkWinner(board) : "tie" }</p> </div>) : ( <div><p>current player: {player}</p></div> ) }
     </>
   )
 

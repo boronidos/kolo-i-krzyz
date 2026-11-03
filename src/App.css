@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Tiny5+Duo:ital,wght@0,100..900;1,100..900&display=swap');
+
 body {
   display: flex;
   justify-content: center;
@@ -11,6 +13,16 @@ body {
   padding: 0px;
 
   background-color: rgb(29, 12, 75);
+
+  font-family: "Tiny5 Duo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100,
+    "BLED" 0,
+    "JITT" 0,
+    "ROND" 0;
 }
 
 td {
@@ -24,4 +36,36 @@ td {
   color: white;
 
   text-align: center;
+}
+
+p {
+  color: white;
+
+  text-align: center;
+}
+
+button {
+  padding: 10px;
+  border-radius: 5px;
+
+  color: white;
+  border: none;
+
+  background-color: rgb(33, 58, 138);
+
+  font-family: "Tiny5 Duo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100,
+    "BLED" 0,
+    "JITT" 0,
+    "ROND" 0;
+}
+
+.ui {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
